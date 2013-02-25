@@ -28,6 +28,7 @@ L<Test::BDD::Cucumber::Model::Feature> object on success.
 use strict;
 use warnings;
 use Ouch;
+use Locale::TextDomain qw(Test-BDD-Cucumber);
 
 use File::Slurp;
 use Test::BDD::Cucumber::Model::Document;
@@ -79,12 +80,13 @@ sub _remove_next_blanks {
 sub _extract_feature_name {
 	my ( $self, $feature, @lines ) = @_;
 	my @feature_tags = ();
+  my $Feature = __"Feature";
 
 	while ( my $line = shift( @lines ) ) {
 		next if $line->is_comment;
 		last if $line->is_blank;
 
-		if ( $line->content =~ m/^Feature: (.+)/ ) {
+		if ( $line->content =~ m/^$Feature: (.+)/ ) {
 			$feature->name( $1 );
 			$feature->name_line( $line );
 			$feature->tags( \@feature_tags );
@@ -97,7 +99,7 @@ sub _extract_feature_name {
 			push( @feature_tags, @tags );
 
 		} else {
-			ouch 'parse_error', "Malformed feature line", $line;
+			ouch 'parse_error', __"Malformed feature line", $line;
 		}
 	}
 
@@ -106,11 +108,13 @@ sub _extract_feature_name {
 
 sub _extract_conditions_of_satisfaction {
 	my ( $self, $feature, @lines ) = @_;
+  my $Background = __"Background";
+  my $Scenario = __"Scenario";
 
 	while ( my $line = shift( @lines ) ) {
 		next if $line->is_comment || $line->is_blank;
 
-		if ( $line->content =~ m/^(Background:|Scenario:|@)/ ) {
+		if ( $line->content =~ m/^($Background:|$Scenario:|@)/ ) {
 			unshift( @lines, $line );
 			last;
 		} else {
@@ -125,23 +129,24 @@ sub _extract_scenarios {
 	my ( $self, $feature, @lines ) = @_;
 	my $scenarios = 0;
 	my @scenario_tags;
+  my $Background_or_Scenario_Outline == __"Background_or_Scenario_Outline";
 
 	while ( my $line = shift( @lines ) ) {
 		next if $line->is_comment || $line->is_blank;
 
-		if ( $line->content =~ m/^(Background|Scenario)(?: Outline)?: ?(.+)?/ ) {
+		if ( $line->content =~ m/^$Background_or_Scenario_Outline: ?(.+)?/ ) {
 			my ( $type, $name ) = ( $1, $2 );
 
 			# Only one background section, and it must be the first
-			if ( $scenarios++ && $type eq 'Background' ) {
-				ouch 'parse_error', "Background not allowed after scenarios",
+			if ( $scenarios++ && $type eq __"Background" ) {
+				ouch 'parse_error', __"Background not allowed after scenarios",
 					$line;
 			}
 
 			# Create the scenario
 			my $scenario = Test::BDD::Cucumber::Model::Scenario->new({
 				( $name ? ( name => $name ) : () ),
-				background => $type eq 'Background' ? 1 : 0,
+				background => $type eq __"Background" ? 1 : 0,
 				line       => $line,
 				tags       => [@{$feature->tags}, @scenario_tags]
 			});
@@ -150,7 +155,7 @@ sub _extract_scenarios {
 			# Attempt to populate it
 			@lines = $self->_extract_steps( $feature, $scenario, @lines );
 
-			if ( $type eq 'Background' ) {
+			if ( $type eq __"Background" ) {
 				$feature->background( $scenario );
 			} else {
 				push( @{ $feature->scenarios }, $scenario );
@@ -162,7 +167,7 @@ sub _extract_scenarios {
 			push( @scenario_tags, @tags );
 
 		} else {
-			ouch 'parse_error', "Malformed scenario line", $line;
+			ouch 'parse_error', __"Malformed scenario line", $line;
 		}
 	}
 
@@ -172,18 +177,24 @@ sub _extract_scenarios {
 sub _extract_steps {
 	my ( $self, $feature, $scenario, @lines ) = @_;
 
-	my $last_verb = 'Given';
+	(my $last_verb = __"Given") =~ s/|.*$//;
+  my $Given = __"Given";
+  my $And = __"And";
+  my $When = __"When";
+  my $Then = __"Then";
+  my $But = __"But";
+  my $Examples = __"Examples";
 
 	while ( my $line = shift( @lines ) ) {
 		next if $line->is_comment;
 		last if $line->is_blank;
 
 		# Conventional step?
-		if ( $line->content =~ m/^(Given|And|When|Then|But) (.+)/ ) {
+		if ( $line->content =~ m/^($Given|$And|$When|$Then|$But) (.+)/ ) {
 			my ( $verb, $text ) = ( $1, $2 );
 			my $original_verb = $verb;
-			$verb = $last_verb if lc($verb) eq 'and' or lc($verb) eq 'but';
-            $last_verb = $verb;
+			$verb = $last_verb if lc($verb) eq __"and" or lc($verb) eq __"but";
+      $last_verb = $verb;
 
 			my $step = Test::BDD::Cucumber::Model::Step->new({
 				text => $text,
@@ -198,12 +209,12 @@ sub _extract_steps {
 			push( @{ $scenario->steps }, $step );
 
 		# Outline data block...
-		} elsif ( $line->content =~ m/^Examples:$/ ) {
+		} elsif ( $line->content =~ m/^$Examples:$/ ) {
 			return $self->_extract_table( 6, $scenario,
 			    $self->_remove_next_blanks( @lines ));
 		} else {
 		    warn $line->content;
-			ouch 'parse_error', "Malformed step line", $line;
+			ouch 'parse_error', __"Malformed step line", $line;
 		}
 	}
 
@@ -270,7 +281,7 @@ sub _extract_table {
 		}
 
 		if ( @columns ) {
-			ouch 'parse_error', "Inconsistent number of rows in table", $line
+			ouch 'parse_error', __"Inconsistent number of rows in table", $line
 				unless @rows == @columns;
 			my $i = 0;
 			my %data_hash = map { $columns[$i++] => $_ } @rows;

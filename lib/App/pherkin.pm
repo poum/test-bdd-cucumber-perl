@@ -3,6 +3,7 @@ package App::pherkin;
 use strict;
 use warnings;
 use FindBin::libs;
+use Locale::TextDomain qw(Test-BDD-Cucumber);
 
 =head1 NAME
 
@@ -45,7 +46,7 @@ sub run {
     my ( $executor, @features ) = Test::BDD::Cucumber::Loader->load(
         $arguments[0] || './features/'
     );
-    die "No feature files found" unless @features;
+    die __"No feature files found" unless @features;
 
     my $harness  = Test::BDD::Cucumber::Harness::TermColor->new();
     $executor->execute( $_, $harness ) for @features;

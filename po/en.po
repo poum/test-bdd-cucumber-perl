@@ -1,0 +1,112 @@
+# English translations for Test-BDD-Cucumber package.
+# Copyright (C) 2013 Peter Sergeant
+# This file is distributed under the same license as the Test-BDD-Cucumber package.
+# Automatically generated, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Test-BDD-Cucumber 0.13\n"
+"Report-Msgid-Bugs-To: pete@clueball.com\n"
+"POT-Creation-Date: 2013-02-25 23:32+0100\n"
+"PO-Revision-Date: 2013-02-25 23:32+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/App/pherkin.pm:49 Test-BDD-Cucumber-0.13/lib/App/pherkin.pm:56
+msgid "No feature files found"
+msgstr "No feature files found"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:82
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:89
+msgid "Feature"
+msgstr "Feature"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:101
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:108
+msgid "Malformed feature line"
+msgstr "Malformed feature line"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:110 lib/Test/BDD/Cucumber/Parser.pm:140
+#: lib/Test/BDD/Cucumber/Parser.pm:148 lib/Test/BDD/Cucumber/Parser.pm:157
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:117
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:147
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:155
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:164
+msgid "Background"
+msgstr "Background"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:111
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:118
+msgid "Scenario"
+msgstr "Scenario"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:131
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:138
+msgid "Background_or_Scenario_Outline"
+msgstr "(Background|Scenario)(?: Outline)?"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:141
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:148
+msgid "Background not allowed after scenarios"
+msgstr "Background not allowed after scenarios"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:169
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:176
+msgid "Malformed scenario line"
+msgstr "Malformed scenario line"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:179 lib/Test/BDD/Cucumber/Parser.pm:180
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:186
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:187
+msgid "Given"
+msgstr "Given"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:181
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:188
+msgid "And"
+msgstr "And"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:182
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:189
+msgid "When"
+msgstr "When"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:183
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:190
+msgid "Then"
+msgstr "Then"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:184
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:191
+msgid "But"
+msgstr "But"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:185
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:192
+msgid "Examples"
+msgstr "Examples"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:195
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:202
+msgid "and"
+msgstr "and"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:195
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:202
+msgid "but"
+msgstr "but"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:216
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:223
+msgid "Malformed step line"
+msgstr "Malformed step line"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:283
+#: Test-BDD-Cucumber-0.13/lib/Test/BDD/Cucumber/Parser.pm:290
+msgid "Inconsistent number of rows in table"
+msgstr "Inconsistent number of rows in table"

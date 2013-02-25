@@ -1,0 +1,91 @@
+# French translations for Test-BDD-Cucumber package.
+# Copyright (C) 2013 Peter Sergeant
+# This file is distributed under the same license as the Test-BDD-Cucumber package.
+# Automatically generated, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Test-BDD-Cucumber 0.12\n"
+"Report-Msgid-Bugs-To: pete@clueball.com\n"
+"POT-Creation-Date: 2013-02-25 23:22+0100\n"
+"PO-Revision-Date: 2013-02-25 21:53+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: lib/App/pherkin.pm:49
+msgid "No feature files found"
+msgstr "Aucun fichier de fonctionnalité trouvé"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:82
+msgid "Feature"
+msgstr "Fonctionnalité"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:101
+msgid "Malformed feature line"
+msgstr "Ligne de la fonctionnalité malformée"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:110 lib/Test/BDD/Cucumber/Parser.pm:140
+#: lib/Test/BDD/Cucumber/Parser.pm:148 lib/Test/BDD/Cucumber/Parser.pm:157
+msgid "Background"
+msgstr "Contexte"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:111
+msgid "Scenario"
+msgstr "Scénario"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:131
+msgid "Background_or_Scenario_Outline"
+msgstr "(?:Plan de )?(contexte|scénario)"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:141
+msgid "Background not allowed after scenarios"
+msgstr "Contexte non autorisé après des scénarios"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:169
+msgid "Malformed scenario line"
+msgstr "Ligne de scénarion malformée"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:179 lib/Test/BDD/Cucumber/Parser.pm:180
+msgid "Given"
+msgstr "Etant donné|Etant donnée|Etant donnés|Etant données"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:181
+msgid "And"
+msgstr "Et"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:182
+msgid "When"
+msgstr "Quand|Lorsque|Lorsqu'"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:183
+msgid "Then"
+msgstr "Alors"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:184
+msgid "But"
+msgstr "Mais"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:185
+msgid "Examples"
+msgstr "Exemples"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:195
+msgid "and"
+msgstr "et"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:195
+msgid "but"
+msgstr "mais"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:216
+msgid "Malformed step line"
+msgstr "Ligne d'étape malformée"
+
+#: lib/Test/BDD/Cucumber/Parser.pm:283
+msgid "Inconsistent number of rows in table"
+msgstr "Nombre de lignes incohérent dans la table"

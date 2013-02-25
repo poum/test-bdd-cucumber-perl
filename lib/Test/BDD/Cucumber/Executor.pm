@@ -271,7 +271,7 @@ sub dispatch {
         $tb_return->{'builder'}->failure_output( \$output );
         $tb_return->{'builder'}->todo_output( \$output );
 
-        # Make a minumum pass
+        # Make a minimum pass
         $tb_return->{'builder'}->ok(1, "Starting to execute step: " . $context->text );
 
         # Say we're about to start it up
