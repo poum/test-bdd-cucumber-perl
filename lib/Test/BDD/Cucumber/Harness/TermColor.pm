@@ -11,28 +11,36 @@ to the terminal.
 
 =head1 METHODS
 
-=head2 result
-
-Returns a collective view on the passing status of all steps run so far,
-as a L<Test::BDD::Cucumber::Model::Result> object.
-
 =cut
 
 use strict;
 use warnings;
 use Moose;
+
+# Try and make the colors just work on Windows...
+BEGIN {
+    if (
+        # We're apparently on Windows
+        $^O =~ /MSWin32/i &&
+        # We haven't disabled coloured output for Term::ANSIColor
+        ( ! $ENV{'ANSI_COLORS_DISABLED'} ) &&
+        # Here's a flag you can use if you really really need to turn this fall-
+        # back behaviour off
+        (! $ENV{'DISABLE_WIN32_FALLBACK'} )
+    ) {
+        # Try and load
+        eval "require Win32::Console::ANSI";
+        if ( $@ ) {
+            print "# Install Win32::Console::ANSI to display colors properly\n";
+        }
+    }
+}
+
 use Term::ANSIColor;
 use Test::BDD::Cucumber::Util;
 use Test::BDD::Cucumber::Model::Result;
 
 extends 'Test::BDD::Cucumber::Harness';
-
-my @results;
-
-sub result {
-    my $self = shift;
-    return Test::BDD::Cucumber::Model::Result->from_children( @results );
-}
 
 my $margin = 2;
 if ( $margin > 1 ) {
@@ -75,7 +83,6 @@ sub scenario_done { print "\n"; }
 sub step {}
 sub step_done {
     my ($self, $context, $result ) = @_;
-    push(@results, $result);
 
     my $color;
     my $follow_up = [];
@@ -88,12 +95,34 @@ sub step_done {
     } else {
         $color = 'red';
         $follow_up = [ split(/\n/, $result->{'output'} ) ];
+
+        if ( ! $context->is_hook )
+        {
+            unshift @{ $follow_up },
+                'step defined at '
+                . $context->step->line->document->filename
+                . ' line '
+                .  $context->step->line->number
+                . '.';
+        }
+    }
+
+    my $text;
+
+    if ( $context->is_hook )
+    {
+        $color eq 'red' or return;
+        $text = 'In ' . ucfirst( $context->verb ) . ' Hook';
+    }
+    else
+    {
+        $text = $context->step->verb_original . ' ' . $context->text;
     }
 
     $self->_display({
         indent    => 4,
         color     => $color,
-        text      => $context->step->verb . ' ' . $context->text,
+        text      => $text,
         highlight => 'bright_cyan',
         trailing  => 0,
         follow_up => $follow_up,
@@ -105,6 +134,7 @@ sub step_done {
 
 sub _note_step_data {
     my ( $self, $step ) = @_;
+    return unless $step;
     my @step_data = @{ $step->data_as_strings };
     return unless @step_data;
 

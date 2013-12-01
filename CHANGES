@@ -1,4 +1,21 @@
 -----
+0.16: 21 May 2013
+    - Default behaviour from pherkin is to supress colours when outputting
+        to not a tty; thanks (for this, and much of the stuff in 0.15) to
+        rjp: https://github.com/sheriff/test-bdd-cucumber-perl/pull/11
+    - Try and use Win32::Console::ANSI if on Windows
+        https://github.com/sheriff/test-bdd-cucumber-perl/issues/13
+0.15: 21 May 2013
+    - pherkin now accepts an output type via -o, eg:
+        pherkin -o TestBuilder ; pherkin -o TermColor
+      This is a partial solution to:
+        https://github.com/sheriff/test-bdd-cucumber-perl/issues/8
+    - Use the original verb that the test file used
+      https://github.com/sheriff/test-bdd-cucumber-perl/issues/9
+0.14: 04 May 2013
+    - Actually apply the Test::Builder 1.5 stuff
+0.13: 04 May 2013
+    - Command-line options for pherkin thanks to cursork
     - Reintroduced the "auto_corpus" tests, and made them work
 0.12: 17 Nov 2012
     - Fixed tag-related issues, thanks to Craig Caroon
